@@ -1,16 +1,17 @@
-from .handlers import (
+from .classes import (
     CommandHandler,
-    Handlers,
     MessageHandler,
     QueryHandler,
     StartHandler,
     TextHandler,
     UpdateHandler,
 )
-from .loader import app
+from .handler import Handler, HandlerClass
+from .handlers import Handlers
 
 __all__ = [
-    "app",
+    "Handler",
+    "HandlerClass",
     "Handlers",
     "UpdateHandler",
     "MessageHandler",

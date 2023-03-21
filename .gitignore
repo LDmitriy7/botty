@@ -1,2 +1,6 @@
+__pycache__/
+dist/
+build/
+.idea/
+.env
 .pdm.toml
-build

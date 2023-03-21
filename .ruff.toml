@@ -1,0 +1,5 @@
+select = ["ALL"]
+ignore = ["D", "ANN101", "ANN102", "ANN204"]
+src = ["botty"]
+fix = true
+show-fixes = true
