@@ -20,11 +20,23 @@ build-backend = "pdm.pep517.api"
 dev = [
     "ruff>=0.0.257",
     "mypy>=1.1.1",
+    "black>=23.1.0",
 ]
 
 [tool.pdm.scripts]
 start = { cmd = "python botty", env_file = ".env" }
-mypy = "mypy botty --strict"
+black = "black botty"
 ruff = "ruff check botty"
-check = { composite = ["mypy", "ruff"] }
-dev = { composite = ["check", "start"] }
+mypy = "mypy botty --strict"
+lint = { composite = ["black", "ruff", "mypy"] }
+dev = { composite = ["lint", "start"] }
+
+[tool.ruff]
+select = ["ALL"]
+ignore = ["D", "ANN101", "ANN102", "ANN204"]
+src = ["botty"]
+fix = true
+show-fixes = true
+
+[tool.isort]
+profile = "black"

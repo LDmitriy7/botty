@@ -6,7 +6,6 @@ from .update import UpdateFieldError, UpdateHandler
 
 
 class QueryHandler(UpdateHandler, ABC):
-
     async def answer(self, text: str, *, show_alert: bool = False) -> bool:
         return await self.query.answer(text, show_alert)
 

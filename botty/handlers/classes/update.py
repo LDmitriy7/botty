@@ -7,7 +7,6 @@ from botty.handlers.types import Context, PTBHandler
 
 
 class UpdateHandler(Handler, ABC):
-
     def __init__(self, update: Update, context: Context):
         self.update = update
         self.context = context

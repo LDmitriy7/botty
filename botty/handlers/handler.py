@@ -4,7 +4,6 @@ from .types import PTBHandler
 
 
 class Handler:
-
     @classmethod
     @abstractmethod
     def build(cls) -> PTBHandler:

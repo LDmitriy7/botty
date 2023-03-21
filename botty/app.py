@@ -3,7 +3,7 @@ import warnings
 from telegram.ext import Application
 from telegram.warnings import PTBUserWarning
 
-from botty.handlers import HandlerClass, Handlers
+from .handlers import HandlerClass, Handlers
 
 warnings.filterwarnings(
     action="ignore",
