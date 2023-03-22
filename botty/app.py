@@ -19,7 +19,7 @@ DEFAULTS = Defaults(
 
 
 class App:
-    def __init__(self, token: str):
+    def __init__(self, token: str) -> None:
         builder = Application.builder()
         builder.token(token).defaults(DEFAULTS).concurrent_updates(True)  # noqa: FBT003
         self.raw = builder.build()

@@ -15,7 +15,7 @@ env = Env()
 
 
 class EnvError(KeyError):
-    def __init__(self, var: str):
+    def __init__(self, var: str) -> None:
         self.var = var
 
     def __str__(self) -> str:

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Handlers:
-    def __init__(self, *items: HandlerClass | Handlers):
+    def __init__(self, *items: HandlerClass | Handlers) -> None:
         self.items = items
 
     def __iter__(self) -> Iterator[HandlerClass]:

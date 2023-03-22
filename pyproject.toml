@@ -33,7 +33,7 @@ dev = { composite = ["lint", "test"] }
 
 [tool.ruff]
 select = ["ALL"]
-ignore = ["D", "ANN101", "ANN102", "ANN204"]
+ignore = ["D", "ANN101", "ANN102"]
 src = ["botty"]
 fix = true
 show-fixes = true

@@ -23,7 +23,7 @@ HandlerClass = type[Handler]
 
 
 class HandlerFieldError(AttributeError):
-    def __init__(self, handler: HandlerClass, field: str):
+    def __init__(self, handler: HandlerClass, field: str) -> None:
         self.handler = handler
         self.field = field
 
