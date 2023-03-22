@@ -1,6 +1,7 @@
 import warnings
 
-from telegram.ext import Application
+from telegram.constants import ParseMode
+from telegram.ext import Application, Defaults
 from telegram.warnings import PTBUserWarning
 
 from .handlers import HandlerClass, Handlers
@@ -11,10 +12,17 @@ warnings.filterwarnings(
     category=PTBUserWarning,
 )
 
+DEFAULTS = Defaults(
+    parse_mode=ParseMode.HTML,
+    disable_web_page_preview=True,
+)
+
 
 class App:
     def __init__(self, token: str):
-        self.raw = Application.builder().token(token).build()
+        builder = Application.builder()
+        builder.token(token).defaults(DEFAULTS).concurrent_updates(True)  # noqa: FBT003
+        self.raw = builder.build()
 
     def _add_handler(self, handler: HandlerClass) -> None:
         self.raw.add_handler(handler.build())

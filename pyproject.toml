@@ -1,6 +1,6 @@
 [project]
 name = "telegram-botty"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = [
     { name = "levch", email = "levchenko.d.a1998@gmail.com" },
@@ -24,12 +24,12 @@ dev = [
 ]
 
 [tool.pdm.scripts]
-start = { cmd = "python botty", env_file = ".env" }
+test = { cmd = "python tests", env_file = ".env" }
 black = "black botty"
 ruff = "ruff check botty"
 mypy = "mypy botty --strict"
 lint = { composite = ["black", "ruff", "mypy"] }
-dev = { composite = ["lint", "start"] }
+dev = { composite = ["lint", "test"] }
 
 [tool.ruff]
 select = ["ALL"]
