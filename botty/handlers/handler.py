@@ -7,7 +7,7 @@ class Handler:
     @classmethod
     @abstractmethod
     def build(cls) -> PTBHandler:
-        """Should return PTB-compatible handler."""
+        """Return PTB-compatible handler."""
 
     @classmethod
     def _validate_class_field(cls, field: str) -> None:

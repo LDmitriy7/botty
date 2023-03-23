@@ -1,9 +1,11 @@
 from abc import ABC, abstractmethod
+from typing import NoReturn
 
 from telegram import Update, ext
 
 from botty.handlers.handler import Handler
 from botty.handlers.types import Context, PTBHandler
+from botty.types import Bot
 
 
 class UpdateHandler(Handler, ABC):
@@ -23,6 +25,14 @@ class UpdateHandler(Handler, ABC):
     @abstractmethod
     async def callback(self) -> None:
         """Will be called to handle update."""
+
+    @property
+    def bot(self) -> Bot:
+        raw = self.context.bot
+        return Bot(raw)
+
+    def _raise_field_error(self, field: str) -> NoReturn:
+        raise UpdateFieldError(self.update, field)
 
 
 class UpdateFieldError(AttributeError):
