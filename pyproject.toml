@@ -1,6 +1,6 @@
 [project]
 name = "telegram-botty"
-version = "0.1.3"
+version = "0.1.4"
 description = ""
 authors = [
     { name = "levch", email = "levchenko.d.a1998@gmail.com" },
@@ -16,29 +16,21 @@ license = { text = "MIT" }
 requires = ["pdm-pep517>=1.0"]
 build-backend = "pdm.pep517.api"
 
-[tool.ruff]
-select = ["ALL"]
-ignore = ["ANN101", "ANN102", "D"]
-src = ["botty"]
-fix = true
-show-fixes = true
-
-[tool.isort]
-profile = "black"
-
-[tool.black]
-quiet = true
-
-[tool.mypy]
-python_executable = ".venv/Scripts/python"
+[tool.pdm.dev-dependencies]
+dev = [
+    "stricter>=0.1.3",
+]
 
 [tool.pyright]
 typeCheckingMode = "strict"
 
 [tool.pdm.scripts]
 test = { cmd = "python tests", env_file = ".env" }
-black = "black ."
-ruff = "ruff check ."
-mypy = "mypy . --strict"
-lint = { composite = ["black", "ruff", "mypy"] }
+lint = "python -m stricter"
 dev = { composite = ["lint", "test"] }
+
+[tool.ruff]
+src = ["botty"]
+
+[tool.isort]
+profile = "black"
