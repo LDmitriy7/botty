@@ -6,16 +6,16 @@ from .classes import (
     TextHandler,
     UpdateHandler,
 )
+from .composite import CompositeHandler
 from .handler import Handler
-from .handlers import Handlers
 
 __all__ = [
     "Handler",
-    "Handlers",
     "UpdateHandler",
     "MessageHandler",
     "QueryHandler",
     "TextHandler",
     "CommandHandler",
     "StartHandler",
+    "CompositeHandler",
 ]

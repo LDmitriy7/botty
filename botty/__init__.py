@@ -1,6 +1,6 @@
 from .handlers import (
     CommandHandler,
-    Handlers,
+    CompositeHandler,
     MessageHandler,
     QueryHandler,
     StartHandler,
@@ -11,7 +11,7 @@ from .loader import app
 
 __all__ = [
     "app",
-    "Handlers",
+    "CompositeHandler",
     "UpdateHandler",
     "MessageHandler",
     "QueryHandler",

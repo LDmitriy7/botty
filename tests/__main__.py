@@ -1,4 +1,4 @@
-from botty import CommandHandler, Handlers, StartHandler, app
+from botty import CommandHandler, CompositeHandler, StartHandler, app
 
 
 class HelloHandler(StartHandler):
@@ -11,5 +11,5 @@ class HelpHandler(CommandHandler):
         await self.reply("Help")
 
 
-HANDLERS = Handlers(HelloHandler(), HelpHandler("help"))
-app.run(HANDLERS)
+handler = CompositeHandler(HelloHandler(), HelpHandler("help"))
+app.run(handler)
