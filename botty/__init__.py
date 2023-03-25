@@ -1,6 +1,7 @@
 from .handlers import (
     CommandHandler,
     CompositeHandler,
+    InlineMenuHandler,
     MessageHandler,
     QueryHandler,
     StartHandler,
@@ -18,4 +19,5 @@ __all__ = [
     "TextHandler",
     "CommandHandler",
     "StartHandler",
+    "InlineMenuHandler",
 ]

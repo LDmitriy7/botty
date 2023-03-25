@@ -1,4 +1,5 @@
 from .command import CommandHandler
+from .inline_menu import InlineMenuHandler
 from .message import MessageHandler
 from .query import QueryHandler
 from .start import StartHandler
@@ -12,4 +13,5 @@ __all__ = [
     "TextHandler",
     "CommandHandler",
     "StartHandler",
+    "InlineMenuHandler",
 ]

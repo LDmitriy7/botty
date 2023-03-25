@@ -1,5 +1,6 @@
 from .classes import (
     CommandHandler,
+    InlineMenuHandler,
     MessageHandler,
     QueryHandler,
     StartHandler,
@@ -18,4 +19,5 @@ __all__ = [
     "CommandHandler",
     "StartHandler",
     "CompositeHandler",
+    "InlineMenuHandler",
 ]
