@@ -2,15 +2,15 @@ from abc import ABC
 
 from telegram import ext
 
-from botty.handlers.types import PTBHandler
+from botty.types import PTBHandler
 
 from .text import TextHandler
 
 
 class CommandHandler(TextHandler, ABC):
-    on_command: str
+    def __init__(self, command: str) -> None:
+        self.on_command = command
+        super().__init__()
 
-    @classmethod
-    def build(cls) -> PTBHandler:
-        cls._validate_class_field("on_command")
-        return ext.CommandHandler(cls.on_command, cls._handle, cls.filters)
+    def build(self) -> PTBHandler:
+        return ext.CommandHandler(self.on_command, self.handle, self.filters)

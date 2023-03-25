@@ -1,29 +1,24 @@
 from abc import abstractmethod
+from typing import TypeVar
 
-from .types import PTBHandler
+from botty.types import PTBHandler
+
+T = TypeVar("T")
 
 
 class Handler:
-    @classmethod
     @abstractmethod
-    def build(cls) -> PTBHandler:
+    def build(self) -> PTBHandler:
         """Return PTB-compatible handler."""
 
-    @classmethod
-    def _validate_class_field(cls, field: str) -> None:
-        if getattr(cls, field, None) is None:
-            raise HandlerFieldError(cls, field)
-
-    def _validate_field(self, field: str) -> None:
-        if getattr(self, field, None) is None:
-            raise HandlerFieldError(self.__class__, field)
-
-
-HandlerClass = type[Handler]
+    def get_validated_field(self, name: str, value: T | None) -> T:
+        if value is None:
+            raise HandlerFieldError(self, name)
+        return value
 
 
 class HandlerFieldError(AttributeError):
-    def __init__(self, handler: HandlerClass, field: str) -> None:
+    def __init__(self, handler: Handler, field: str) -> None:
         self.handler = handler
         self.field = field
 

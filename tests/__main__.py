@@ -7,11 +7,9 @@ class HelloHandler(StartHandler):
 
 
 class HelpHandler(CommandHandler):
-    on_command = "help"
-
     async def callback(self) -> None:
         await self.reply("Help")
 
 
-HANDLERS = Handlers(HelloHandler, HelpHandler)
+HANDLERS = Handlers(HelloHandler(), HelpHandler("help"))
 app.run(HANDLERS)

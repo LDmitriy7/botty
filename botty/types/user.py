@@ -1,9 +1,13 @@
 import telegram
 
+from botty.telegram_object import TelegramObject
 
-class User:
+
+class User(TelegramObject):
+    raw: telegram.User
+
     def __init__(self, raw: telegram.User) -> None:
-        self.raw = raw
+        super().__init__(raw)
 
     @property
     def mention(self) -> str:

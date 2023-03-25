@@ -6,12 +6,11 @@ from .classes import (
     TextHandler,
     UpdateHandler,
 )
-from .handler import Handler, HandlerClass
+from .handler import Handler
 from .handlers import Handlers
 
 __all__ = [
     "Handler",
-    "HandlerClass",
     "Handlers",
     "UpdateHandler",
     "MessageHandler",

@@ -1,9 +1,13 @@
 import telegram
 
+from botty.telegram_object import TelegramObject
 
-class Chat:
+
+class Chat(TelegramObject):
+    raw: telegram.Chat
+
     def __init__(self, raw: telegram.Chat) -> None:
-        self.raw = raw
+        super().__init__(raw)
 
     @property
     def is_private(self) -> bool:

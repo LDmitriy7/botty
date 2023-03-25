@@ -4,4 +4,5 @@ from .command import CommandHandler
 
 
 class StartHandler(CommandHandler, ABC):
-    on_command = "start"
+    def __init__(self) -> None:
+        super().__init__("start")

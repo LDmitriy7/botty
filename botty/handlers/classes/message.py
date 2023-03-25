@@ -1,49 +1,38 @@
-from typing import cast
-
 import telegram
 from telegram import ext
 
-from botty.handlers.types import PTBHandler, ReplyMarkup
-from botty.types import Chat, User
+from botty.types import Chat, Message, PTBHandler, ReplyMarkup, User
 
 from .update import UpdateHandler
 
 
 class MessageHandler(UpdateHandler):
     filters: ext.filters.BaseFilter = ext.filters.UpdateType.MESSAGE
-    reply_text: str
+    reply_text: str | None = None
     reply_markup: ReplyMarkup | None = None
 
-    @classmethod
-    def build(cls) -> PTBHandler:
-        return ext.MessageHandler(cls.filters, cls._handle)
+    def build(self) -> PTBHandler:
+        return ext.MessageHandler(self.filters, self.handle)
 
     async def callback(self) -> None:
-        self._validate_field("reply_text")
-        await self.reply(self.reply_text, self.reply_markup)
+        text = self.get_validated_field("reply_text", self.reply_text)
+        await self.reply(text, self.reply_markup)
 
     async def reply(
         self,
         text: str,
         markup: ReplyMarkup | None = None,
     ) -> telegram.Message:
-        markup = cast(ReplyMarkup, markup)  # fix PTB error
-        return await self.message.reply_text(text, reply_markup=markup)
+        return await self.message.reply(text, markup)
 
     @property
-    def message(self) -> telegram.Message:
-        value = self.update.message
-        if value is None:
-            self._raise_field_error("message")
-        return value
+    def message(self) -> Message:
+        return self.update.message
 
     @property
     def chat(self) -> Chat:
-        return Chat(self.message.chat)
+        return self.message.chat
 
     @property
     def user(self) -> User:
-        raw = self.message.from_user
-        if raw is None:
-            self._raise_field_error("user")
-        return User(raw)
+        return self.message.user

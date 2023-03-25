@@ -4,7 +4,7 @@ from telegram.constants import ParseMode
 from telegram.ext import Application, Defaults
 from telegram.warnings import PTBUserWarning
 
-from .handlers import HandlerClass, Handlers
+from .handlers import Handler, Handlers
 
 warnings.filterwarnings(
     action="ignore",
@@ -24,7 +24,7 @@ class App:
         builder.token(token).defaults(DEFAULTS).concurrent_updates(True)  # noqa: FBT003
         self.raw = builder.build()
 
-    def _add_handler(self, handler: HandlerClass) -> None:
+    def _add_handler(self, handler: Handler) -> None:
         self.raw.add_handler(handler.build())
 
     def run(self, handlers: Handlers) -> None:
