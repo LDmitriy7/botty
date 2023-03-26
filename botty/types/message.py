@@ -31,3 +31,7 @@ class Message(TelegramObject):
     @property
     def chat(self) -> Chat:
         return Chat(self.raw.chat)
+
+    @property
+    def text(self) -> str:
+        return self.get_validated_field("text", self.raw.text)

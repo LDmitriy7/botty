@@ -36,3 +36,7 @@ class MessageHandler(UpdateHandler):
     @property
     def user(self) -> User:
         return self.message.user
+
+    @property
+    def text(self) -> str:
+        return self.message.text

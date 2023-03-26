@@ -3,6 +3,7 @@ from .classes import (
     InlineMenuHandler,
     MessageHandler,
     QueryHandler,
+    StartGroupHandler,
     StartHandler,
     TextHandler,
     UpdateHandler,
@@ -20,4 +21,5 @@ __all__ = [
     "StartHandler",
     "CompositeHandler",
     "InlineMenuHandler",
+    "StartGroupHandler",
 ]

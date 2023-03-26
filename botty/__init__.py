@@ -5,6 +5,7 @@ from .handlers import (
     InlineMenuHandler,
     MessageHandler,
     QueryHandler,
+    StartGroupHandler,
     StartHandler,
     TextHandler,
     UpdateHandler,
@@ -28,4 +29,5 @@ __all__ = [
     "InlineKeyboard",
     "InlineButtons",
     "Texts",
+    "StartGroupHandler",
 ]

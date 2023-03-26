@@ -2,7 +2,7 @@ from .command import CommandHandler
 from .inline_menu import InlineMenuHandler
 from .message import MessageHandler
 from .query import QueryHandler
-from .start import StartHandler
+from .start import StartGroupHandler, StartHandler
 from .text import TextHandler
 from .update import UpdateHandler
 
@@ -14,4 +14,5 @@ __all__ = [
     "CommandHandler",
     "StartHandler",
     "InlineMenuHandler",
+    "StartGroupHandler",
 ]
