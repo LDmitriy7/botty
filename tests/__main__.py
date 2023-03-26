@@ -2,8 +2,11 @@ from botty import CommandHandler, CompositeHandler, StartHandler, app
 
 
 class HelloHandler(StartHandler):
+    reply_text = "1"
+
     async def callback(self) -> None:
-        await self.reply("Hello")
+        await self.reply(self.reply_text)
+        self.reply_text = "2"
 
 
 class HelpHandler(CommandHandler):

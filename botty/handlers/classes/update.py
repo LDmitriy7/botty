@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from copy import deepcopy
 
 import telegram
 from telegram import ext
@@ -16,9 +17,10 @@ class UpdateHandler(Handler, ABC):
         return ext.TypeHandler(telegram.Update, self.handle)
 
     async def handle(self, update: telegram.Update, context: Context) -> None:
-        self.set_update(update, context)
-        await self.prepare()
-        await self.callback()
+        handler = deepcopy(self)
+        handler.set_update(update, context)
+        await handler.prepare()
+        await handler.callback()
 
     def set_update(self, update: telegram.Update, context: Context) -> None:
         self._update = Update(update)
