@@ -1,8 +1,7 @@
 import telegram
 
-from botty.telegram_object import TelegramObject
-
 from .message import Message
+from .object import TelegramObject
 from .query import Query
 
 

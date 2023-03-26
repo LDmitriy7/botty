@@ -1,7 +1,6 @@
 import telegram
+from botty_core.types import Chat, Message, PTBHandler, ReplyMarkup, User
 from telegram import ext
-
-from botty.types import Chat, Message, PTBHandler, ReplyMarkup, User
 
 from .update import UpdateHandler
 

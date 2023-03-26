@@ -1,7 +1,7 @@
 import telegram
 from telegram.helpers import create_deep_linked_url
 
-from botty.telegram_object import TelegramObject
+from .object import TelegramObject
 
 
 class Bot(TelegramObject):

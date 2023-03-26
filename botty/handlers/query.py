@@ -1,10 +1,10 @@
 from abc import ABC
 
+from botty_core.types import PTBHandler, Query
 from telegram import ext
 
 from botty.errors import CallbackDataError
 from botty.helpers import listify
-from botty.types import PTBHandler, Query
 
 from .update import UpdateHandler
 

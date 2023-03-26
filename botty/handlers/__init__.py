@@ -1,25 +1,18 @@
-from .classes import (
-    CommandHandler,
-    InlineMenuHandler,
-    MessageHandler,
-    QueryHandler,
-    StartGroupHandler,
-    StartHandler,
-    TextHandler,
-    UpdateHandler,
-)
-from .composite import CompositeHandler
-from .handler import Handler
+from .command import CommandHandler
+from .inline_menu import InlineMenuHandler
+from .message import MessageHandler
+from .query import QueryHandler
+from .start import StartGroupHandler, StartHandler
+from .text import TextHandler
+from .update import UpdateHandler
 
 __all__ = [
-    "Handler",
     "UpdateHandler",
     "MessageHandler",
     "QueryHandler",
     "TextHandler",
     "CommandHandler",
     "StartHandler",
-    "CompositeHandler",
     "InlineMenuHandler",
     "StartGroupHandler",
 ]

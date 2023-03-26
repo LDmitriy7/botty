@@ -2,7 +2,7 @@ from typing import TypeVar
 
 import telegram
 
-from .helpers import get_validated_field
+from botty_core.helpers import get_validated_field
 
 T = TypeVar("T")
 

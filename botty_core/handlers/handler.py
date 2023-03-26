@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from typing import TypeVar
 
-from botty.types import PTBHandler
+from botty_core.types import PTBHandler
 
 T = TypeVar("T")
 

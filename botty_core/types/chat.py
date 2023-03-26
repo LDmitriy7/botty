@@ -1,6 +1,6 @@
 import telegram
 
-from botty.telegram_object import TelegramObject
+from .object import TelegramObject
 
 
 class Chat(TelegramObject):

@@ -1,8 +1,7 @@
 from abc import ABC
 
+from botty_core.types import PTBHandler
 from telegram import ext
-
-from botty.types import PTBHandler
 
 from .message import MessageHandler
 

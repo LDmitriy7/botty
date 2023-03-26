@@ -2,10 +2,9 @@ from typing import cast
 
 import telegram
 
-from botty.telegram_object import TelegramObject
-
 from .aliases import ReplyMarkup
 from .chat import Chat
+from .object import TelegramObject
 from .user import User
 
 

@@ -1,10 +1,8 @@
 [project]
 name = "telegram-botty"
-version = "0.2.5"
+version = "0.2.8"
 description = ""
-authors = [
-    { name = "levch", email = "levchenko.d.a1998@gmail.com" },
-]
+authors = [{ name = "levch", email = "levchenko.d.a1998@gmail.com" }]
 dependencies = [
     "python-telegram-bot>=20.1",
 ]
@@ -30,7 +28,7 @@ lint = "python -m stricter"
 dev = { composite = ["lint", "test"] }
 
 [tool.ruff]
-src = ["botty", "tests"]
+src = ["botty", "botty_core", "tests"]
 
 [tool.isort]
 profile = "black"

@@ -2,7 +2,7 @@ from botty import CommandHandler, CompositeHandler, StartHandler, app
 
 
 class HelloHandler(StartHandler):
-    reply_text = "1"
+    reply_text: str = "1"
 
     async def callback(self) -> None:
         await self.reply(self.reply_text)

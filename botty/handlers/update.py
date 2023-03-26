@@ -2,10 +2,9 @@ from abc import ABC, abstractmethod
 from copy import deepcopy
 
 import telegram
+from botty_core import Handler
+from botty_core.types import Bot, Context, PTBHandler, Update
 from telegram import ext
-
-from botty.handlers.handler import Handler
-from botty.types import Bot, Context, PTBHandler, Update
 
 
 class UpdateHandler(Handler, ABC):

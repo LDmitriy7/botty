@@ -1,7 +1,8 @@
+from botty_core import CompositeHandler
+
 from .buttons import CallbackButton, UrlButton
 from .handlers import (
     CommandHandler,
-    CompositeHandler,
     InlineMenuHandler,
     MessageHandler,
     QueryHandler,
@@ -16,6 +17,11 @@ from .texts import Texts
 
 __all__ = [
     "app",
+    "Texts",
+    "InlineButtons",
+    "InlineKeyboard",
+    "UrlButton",
+    "CallbackButton",
     "CompositeHandler",
     "UpdateHandler",
     "MessageHandler",
@@ -23,11 +29,6 @@ __all__ = [
     "TextHandler",
     "CommandHandler",
     "StartHandler",
-    "InlineMenuHandler",
-    "CallbackButton",
-    "UrlButton",
-    "InlineKeyboard",
-    "InlineButtons",
-    "Texts",
     "StartGroupHandler",
+    "InlineMenuHandler",
 ]
