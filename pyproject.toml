@@ -1,6 +1,6 @@
 [project]
 name = "telegram-botty"
-version = "0.2.8"
+version = "0.3.9"
 description = ""
 authors = [{ name = "levch", email = "levchenko.d.a1998@gmail.com" }]
 dependencies = [

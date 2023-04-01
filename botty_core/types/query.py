@@ -1,6 +1,8 @@
 import telegram
 
+from .message import Message
 from .object import TelegramObject
+from .user import User
 
 
 class Query(TelegramObject):
@@ -11,7 +13,17 @@ class Query(TelegramObject):
 
     @property
     def data(self) -> str:
-        return self.get_validated_field("data", self.raw.data)
+        return self.check_field("data", self.raw.data)
 
-    async def answer(self, text: str, *, show_alert: bool = False) -> bool:
+    @property
+    def message(self) -> Message:
+        raw = self.check_field("message", self.raw.message)
+        return Message(raw)
+
+    @property
+    def user(self) -> User:
+        raw = self.check_field("user", self.raw.from_user)
+        return User(raw)
+
+    async def answer(self, text: str = "", *, show_alert: bool = False) -> bool:
         return await self.raw.answer(text, show_alert)

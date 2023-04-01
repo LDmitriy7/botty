@@ -1,14 +1,12 @@
-from abc import ABC, abstractmethod
+from collections.abc import Sequence
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
-InlineButtons = list[list[InlineKeyboardButton]]
+ButtonRow = Sequence[InlineKeyboardButton]
 
 
-class InlineKeyboard(ABC):
-    def build(self) -> InlineKeyboardMarkup:
-        return InlineKeyboardMarkup(self.get_buttons())
+class InlineKeyboard(InlineKeyboardMarkup):
+    buttons: Sequence[ButtonRow]
 
-    @abstractmethod
-    def get_buttons(self) -> InlineButtons:
-        """Return rows, where row is a list of PTB-compatible buttons."""
+    def __init__(self, *buttons: ButtonRow) -> None:
+        super().__init__(buttons)

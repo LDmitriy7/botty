@@ -1,3 +1,3 @@
-from .inline import InlineButtons, InlineKeyboard
+from .inline import InlineKeyboard
 
-__all__ = ["InlineKeyboard", "InlineButtons"]
+__all__ = ["InlineKeyboard"]

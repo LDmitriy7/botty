@@ -1,8 +1,7 @@
-from typing import cast
-
 import telegram
 
-from .aliases import ReplyMarkup
+from botty_core.ptb_types import ReplyMarkup
+
 from .chat import Chat
 from .object import TelegramObject
 from .user import User
@@ -14,17 +13,9 @@ class Message(TelegramObject):
     def __init__(self, raw: telegram.Message) -> None:
         super().__init__(raw)
 
-    async def reply(
-        self,
-        text: str,
-        markup: ReplyMarkup | None = None,
-    ) -> telegram.Message:
-        markup = cast(ReplyMarkup, markup)  # fix PTB error
-        return await self.raw.reply_text(text, reply_markup=markup)
-
     @property
     def user(self) -> User:
-        raw = self.get_validated_field("user", self.raw.from_user)
+        raw = self.check_field("user", self.raw.from_user)
         return User(raw)
 
     @property
@@ -33,4 +24,24 @@ class Message(TelegramObject):
 
     @property
     def text(self) -> str:
-        return self.get_validated_field("text", self.raw.text)
+        return self.check_field("text", self.raw.text)
+
+    async def reply(
+        self,
+        text: str,
+        markup: ReplyMarkup | None = None,
+    ) -> telegram.Message:
+        return await self.raw.reply_text(
+            text,
+            reply_markup=markup,  # type: ignore[arg-type]
+        )
+
+    async def edit(
+        self,
+        text: str,
+        markup: ReplyMarkup | None = None,
+    ) -> telegram.Message | bool:
+        return await self.raw.edit_text(
+            text,
+            reply_markup=markup,  # type: ignore[arg-type]
+        )

@@ -4,11 +4,17 @@ from telegram.constants import ParseMode
 from telegram.ext import Application, Defaults
 from telegram.warnings import PTBUserWarning
 
-from .handlers import CompositeHandler
+from .ptb_types import PTBHandler
 
 warnings.filterwarnings(
     action="ignore",
     message=".* should be built via the `ApplicationBuilder`",
+    category=PTBUserWarning,
+)
+
+warnings.filterwarnings(
+    action="ignore",
+    message="If 'per_message=.*', 'CallbackQueryHandler'",
     category=PTBUserWarning,
 )
 
@@ -25,7 +31,6 @@ class App:
         builder.concurrent_updates(True)  # noqa: FBT003
         self.raw = builder.build()
 
-    def run(self, handler: CompositeHandler) -> None:
-        for subhandler in handler.build():
-            self.raw.add_handler(subhandler)
+    def run(self, handler: PTBHandler) -> None:
+        self.raw.add_handler(handler)
         self.raw.run_polling()

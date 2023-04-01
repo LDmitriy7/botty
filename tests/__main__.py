@@ -1,18 +1,30 @@
-from botty import CommandHandler, CompositeHandler, StartHandler, app
+from botty import (
+    CompositeHandler,
+    StartGroupHandler,
+    StartHandler,
+    TextContext,
+    app,
+    texts,
+)
+from botty.handlers import CommandHandler
 
 
-class HelloHandler(StartHandler):
-    reply_text: str = "1"
-
-    async def callback(self) -> None:
-        await self.reply(self.reply_text)
-        self.reply_text = "2"
+async def start_callback(ctx: TextContext) -> None:
+    await ctx.reply(texts[1])
 
 
-class HelpHandler(CommandHandler):
-    async def callback(self) -> None:
-        await self.reply("Help")
+async def start_group_callback(ctx: TextContext) -> None:
+    await ctx.reply("startgroup")
 
 
-handler = CompositeHandler(HelloHandler(), HelpHandler("help"))
+async def test_callback(ctx: TextContext) -> None:
+    await ctx.reply("test")
+
+
+h1 = StartHandler(start_callback)
+h2 = StartGroupHandler(start_group_callback)
+h3 = CommandHandler("test", test_callback)
+handler = CompositeHandler(h2, h1)
+handler = CompositeHandler(handler, h3)
+
 app.run(handler)

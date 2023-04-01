@@ -1,12 +1,12 @@
 from typing import TypeVar
 
-T = TypeVar("T")
+ObjectT = TypeVar("ObjectT", bound=object)
 
 
-def get_validated_field(obj: object, field: str, value: T | None) -> T:
+def check_field(owner: object, field: str, value: ObjectT | None) -> ObjectT:
     """If `value` is None, raise `FieldError`, else return it."""
     if value is None:
-        raise FieldError(obj, field)
+        raise FieldError(owner, field)
     return value
 
 

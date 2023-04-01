@@ -1,13 +1,13 @@
-from abc import ABC
-
 from telegram import ext
+
+from botty.contexts import TextCallback
 
 from .command import CommandHandler
 
 
-class StartHandler(CommandHandler, ABC):
-    def __init__(self) -> None:
-        super().__init__("start")
+class StartHandler(CommandHandler):
+    def __init__(self, callback: TextCallback) -> None:
+        super().__init__("start", callback)
 
 
 class StartGroupHandler(StartHandler):

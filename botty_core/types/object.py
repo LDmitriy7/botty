@@ -1,15 +1,11 @@
-from typing import TypeVar
-
 import telegram
 
-from botty_core.helpers import get_validated_field
-
-T = TypeVar("T")
+from botty_core.helpers import ObjectT, check_field
 
 
 class TelegramObject:
     def __init__(self, raw: telegram.TelegramObject) -> None:
         self.raw = raw
 
-    def get_validated_field(self, name: str, value: T | None) -> T:
-        return get_validated_field(self.raw, name, value)
+    def check_field(self, name: str, value: ObjectT | None) -> ObjectT:
+        return check_field(self.raw, name, value)

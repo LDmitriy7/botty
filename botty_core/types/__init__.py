@@ -1,4 +1,3 @@
-from .aliases import Context, PTBHandler, ReplyMarkup
 from .bot import Bot
 from .chat import Chat
 from .message import Message
@@ -13,7 +12,4 @@ __all__ = [
     "Query",
     "Update",
     "Message",
-    "PTBHandler",
-    "Context",
-    "ReplyMarkup",
 ]

@@ -1,32 +1,20 @@
-from abc import ABC
+from botty_core import PTBContext
+from telegram import Update, ext
 
-from botty_core.types import PTBHandler, Query
-from telegram import ext
-
-from botty.errors import CallbackDataError
-from botty.helpers import listify
-
-from .update import UpdateHandler
+from botty.buttons import CallbackButton
+from botty.contexts import QueryCallback, QueryContext
 
 
-class QueryHandler(UpdateHandler, ABC):
-    def __init__(self, button: str | list[str] | None = None) -> None:
-        self.on_button = button
-        super().__init__()
+class QueryHandler(ext.CallbackQueryHandler[PTBContext]):
+    def __init__(self, button: CallbackButton, callback: QueryCallback) -> None:
+        self._button = button
+        self._callback = callback
+        super().__init__(self.handle, self._filter)
 
-    def build(self) -> PTBHandler:
-        return ext.CallbackQueryHandler(self.handle, self._filter)
+    async def handle(self, update: Update, context: PTBContext) -> None:
+        _context = QueryContext(context, update)
+        await self._callback(_context)
+        await _context.answer()
 
     def _filter(self, callback_data: object) -> bool:
-        if self.on_button is None:
-            return True
-        if not isinstance(callback_data, str):
-            raise CallbackDataError(callback_data)
-        return callback_data in listify(self.on_button)
-
-    async def answer(self, text: str, *, show_alert: bool = False) -> bool:
-        return await self.query.answer(text, show_alert=show_alert)
-
-    @property
-    def query(self) -> Query:
-        return self.update.query
+        return callback_data == self._button.callback_data

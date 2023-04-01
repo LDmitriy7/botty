@@ -1,41 +1,16 @@
-import telegram
-from botty_core.types import Chat, Message, PTBHandler, ReplyMarkup, User
-from telegram import ext
+from botty_core import PTBContext
+from telegram import Update, ext
 
-from .update import UpdateHandler
+from botty.contexts import UpdateCallback, UpdateContext
 
 
-class MessageHandler(UpdateHandler):
-    filters: ext.filters.BaseFilter = ext.filters.UpdateType.MESSAGE
-    reply_text: str | None = None
-    reply_markup: ReplyMarkup | None = None
+class MessageHandler(ext.MessageHandler[PTBContext]):
+    filters = ext.filters.UpdateType.MESSAGE
 
-    def build(self) -> PTBHandler:
-        return ext.MessageHandler(self.filters, self.handle)
+    def __init__(self, callback: UpdateCallback) -> None:
+        self._callback = callback
+        super().__init__(self.filters, self.handle)
 
-    async def callback(self) -> None:
-        text = self.get_validated_field("reply_text", self.reply_text)
-        await self.reply(text, self.reply_markup)
-
-    async def reply(
-        self,
-        text: str,
-        markup: ReplyMarkup | None = None,
-    ) -> telegram.Message:
-        return await self.message.reply(text, markup)
-
-    @property
-    def message(self) -> Message:
-        return self.update.message
-
-    @property
-    def chat(self) -> Chat:
-        return self.message.chat
-
-    @property
-    def user(self) -> User:
-        return self.message.user
-
-    @property
-    def text(self) -> str:
-        return self.message.text
+    async def handle(self, update: Update, context: PTBContext) -> None:
+        _context = UpdateContext(context, update)
+        await self._callback(_context)
